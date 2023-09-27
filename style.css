@@ -1,0 +1,11 @@
+.input-div{
+    padding: 30px 50px 15px 50px;
+}
+.label-wrap{
+    word-break: break-word; 
+    max-width: 100%;
+    white-space: normal;
+}
+.list-div{
+    padding: 30px 50px 0px 50px;
+}
