@@ -1,5 +1,6 @@
 window.addEventListener('load',function(){
     displaySavedItems();
+    toggleDeleteButtonVisibility();
 });
 document.getElementById("delete").addEventListener("click",function(){
     var checkboxes=document.querySelectorAll('input[type="checkbox"]');
@@ -7,6 +8,7 @@ document.getElementById("delete").addEventListener("click",function(){
         if(checkbox.checked){
             checkbox.parentElement.remove();
             savedItemsLocalStorage();
+            toggleDeleteButtonVisibility();
         }
     });
 });
@@ -17,6 +19,7 @@ document.getElementById("items").addEventListener("keyup", function(event){
             addItemToList(newItem);
             document.getElementById("items").value = ""
             savedItemsLocalStorage();
+            toggleDeleteButtonVisibility();
         }
     }
 });
@@ -27,8 +30,27 @@ document.getElementById("save").addEventListener("click",function(){
         addItemToList(newItem);
         document.getElementById("items").value = ""
         savedItemsLocalStorage();
+        toggleDeleteButtonVisibility();
     }
 });
+
+function toggleDeleteButtonVisibility() {
+    var savedItems = localStorage.getItem("todoItems");
+    var deleteButton = document.getElementById("delete");
+
+    if (savedItems) {
+        savedItems = JSON.parse(savedItems);
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        if (checkboxes.length > 0 || savedItems.length > 0) {
+            deleteButton.style.display = "block"; 
+        } else {
+            deleteButton.style.display = "none";
+        }
+    } else {
+        deleteButton.style.display = "none";
+    }
+}
+
 
 function addItemToList(text){
     var noteList=document.getElementById("noteList");
