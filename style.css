@@ -9,3 +9,17 @@
 .list-div{
     padding: 30px 50px 0px 50px;
 }
+.del-user-div{
+    padding: 30px 50px 15px 50px;
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: bold;
+
+}
+.user-login-div{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

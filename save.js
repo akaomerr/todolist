@@ -1,7 +1,16 @@
 window.addEventListener('load',function(){
     displaySavedItems();
     toggleDeleteButtonVisibility();
+    userVisibility();
 });
+
+document.getElementById("del-user").addEventListener("click", function() {
+    localStorage.removeItem("user");
+    localStorage.removeItem("todoItems");
+    location.reload();
+});
+
+
 document.getElementById("delete").addEventListener("click",function(){
     var checkboxes=document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(function(checkbox){
@@ -33,6 +42,30 @@ document.getElementById("save").addEventListener("click",function(){
         toggleDeleteButtonVisibility();
     }
 });
+
+function userVisibility() {
+    var user = localStorage.getItem("user");
+    if (user) {
+        document.getElementById("user-login").style.display = "none";
+        document.getElementById("user").textContent = `Welcome: ${user}`;
+    } else {
+        document.getElementById("add-button").style.display = "none";
+        document.getElementById("list").style.display = "none";
+        document.getElementById("del-user-button").style.display = "none";
+        document.getElementById("login-button").addEventListener("click", function() {
+            var username = document.getElementById("username").value;
+            if (username.trim() !== "") {
+                localStorage.setItem("user", username);
+                document.getElementById("user-login").style.display = "none";
+                document.getElementById("user").textContent = `Welcome: ${username}`;
+                document.getElementById("add-button").style.display = "block";
+                document.getElementById("list").style.display = "block";
+                location.reload();
+            }
+        });
+    }
+}
+
 
 function toggleDeleteButtonVisibility() {
     var savedItems = localStorage.getItem("todoItems");
