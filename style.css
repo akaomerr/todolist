@@ -1,3 +1,4 @@
+
 .input-div{
     padding: 30px 50px 15px 50px;
 }
@@ -14,8 +15,11 @@
     text-align: center;
     font-size: 1.9rem;
     font-weight: bold;
-
 }
+.list-group{
+    background-color: #EEEEEE;
+}
+
 .user-login-div{
     position: absolute;
     top: 50%;
